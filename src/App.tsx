@@ -1,3 +1,5 @@
+import { Plus } from "phosphor-react";
+import { useState } from "react";
 import { Header } from "./components/Header/Header";
 import { Post } from "./components/Post";
 import { Sidebar } from "./components/Sidebar";
@@ -5,7 +7,7 @@ import { Sidebar } from "./components/Sidebar";
 import styles from './styles/App.module.css';
 import './styles/global.css';
 
-const posts = [
+const postsDefault = [
   {
     id: 'e13da59d-a0b7-486d-a7ad-d8459f96351e',
     author: {
@@ -34,23 +36,28 @@ const posts = [
     ],
     publishedAt: new Date('2022-05-10 20:00:00'),
   },
-  {
-    id: '1fb5c99d-cba9-43da-9d32-b9521e08cdb7',
-    author: {
-      avatarUrl: 'https://github.com/diego3g.png',
-      name: 'Diego Fernandes',
-      role: 'CTO Rocketseat',
-    },
-    content: [
-      { type: 'paragraph', content: 'Fala galeraa 👋' },
-      { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'},
-      { type: 'link', content: 'jane.design/doctorcare'},
-    ],
-    publishedAt: new Date('2022-06-7 10:45:00'),
-  },
 ];
 
 function App() {
+  const [posts, setPosts] = useState(postsDefault);
+
+  function handleAddNewPost() {
+    setPosts([...posts, {
+      id: 'e13da59d-a0b7-486d-a7ad-d8459f96351e',
+      author: {
+        avatarUrl: 'https://github.com/rafaelppereira.png',
+        name: 'Rafael Pereira',
+        role: 'CTO outspace',
+      },
+      content: [
+        { type: 'paragraph', content: 'Fala galeraa 👋' },
+        { type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'},
+        { type: 'link', content: 'jane.design/doctorcare'},
+      ],
+      publishedAt: new Date(),
+    }])
+  }
+
   return (
     <>
       <Header />
@@ -66,7 +73,18 @@ function App() {
               publishedAt={post.publishedAt}
             />
           ))}
+        
+
+          <button 
+            className={styles.addNewPostButton} 
+            type="button"
+            title="Adicionar um novo post"
+            onClick={handleAddNewPost}
+          >
+            <Plus size={24} />
+          </button>
         </main>
+    
       </div>
     </>
   )

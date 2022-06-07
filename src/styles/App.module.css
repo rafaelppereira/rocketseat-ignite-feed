@@ -9,6 +9,23 @@
   align-items: flex-start;
 }
 
+.addNewPostButton {
+  width: 100%;
+  margin-top: 2rem;
+
+  background: var(--green-500);
+  color: var(--white);
+  padding: 1rem 0;
+  cursor: pointer;
+
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+
+.addNewPostButton:hover {
+  background: var(--green-300);
+}
+
 @media (max-width: 768px) {
   html {
     font-size: 14px;
